@@ -27,7 +27,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-const api = 'http://localhost:3000'
+const api = 'https://tic-toe-tele.onrender.com'
 
 const playerId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id?.toString() || Math.random().toString(36).substr(2, 6)
 const board = ref(Array(9).fill(''))
