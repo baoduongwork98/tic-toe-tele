@@ -45,12 +45,25 @@ app.post('/webhook', async (req, res) => {
   if (message && message.text) {
     const chatId = message.chat.id;
     const userMessage = message.text;
+    if (message?.text === '/start') {
+      const chatId = message.chat.id;
 
-    // Phản hồi đơn giản
-    await axios.post(`https://api.telegram.org/bot7613604843:AAE4OML5a8PRHvptJWM9Y7U4Pzi1-FhbTR4/sendMessage`, {
-      chat_id: chatId,
-      text: `Bạn đã gửi: ${userMessage}`,
-    });
+      await axios.post(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`, {
+        chat_id: chatId,
+        text: '🎮 Chào mừng bạn đến với Tic Tac Toe!',
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: '🚀 Bắt đầu chơi trên Web',
+                url: 'https://tic-toe-tele.netlify.app'
+              }
+            ]
+          ]
+        }
+      });
+    }
+
   }
 
   res.sendStatus(200);
