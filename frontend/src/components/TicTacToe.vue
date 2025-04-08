@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import {ref, onMounted, computed} from 'vue'
 const api = 'https://tic-toe-tele.onrender.com'
 
 const playerId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id?.toString() || Math.random().toString(36).substr(2, 6)
