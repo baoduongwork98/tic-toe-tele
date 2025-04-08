@@ -1,13 +1,17 @@
 <template>
     <div id="app">
-      <TicTacToe />
+      <TicTacToe v-model:startPolling="isStart"/>
     </div>
   </template>
   
   <script setup>
   import TicTacToe from './components/TicTacToe.vue'
-  import { onMounted } from 'vue'
-
+  import {onMounted, ref} from 'vue'
+  const isStart = ref(false)
+  const startPolling = () => {
+    // Polling logic here
+    isStart.value = !isStart.value
+  }
   onMounted(() => {
     const tg = window.Telegram.WebApp
     tg.expand() // Mở rộng giao diện
@@ -18,6 +22,10 @@
     // Tùy chọn: đổi màu, nút...
     tg.MainButton.setText("Bắt đầu ván chơi")
     tg.MainButton.show()
+    tg.onEvent(',mainButtonClicked', () => {
+      startPolling()
+      tg.MainButton.hide()
+    })
   })
   </script>
   

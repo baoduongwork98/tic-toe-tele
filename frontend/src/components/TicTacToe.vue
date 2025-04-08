@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted, computed} from 'vue'
+import {ref, onMounted, computed, watch} from 'vue'
 const api = 'https://tic-toe-tele.onrender.com'
 
 const playerId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id?.toString() || Math.random().toString(36).substr(2, 6)
@@ -38,7 +38,12 @@ const joinGameId = ref('')
 let pollInterval = null
 
 const isMyTurn = computed(() => currentPlayer.value === playerId)
-
+const props = defineProps({
+  startPolling: {
+    type: Boolean,
+    default: false
+  }
+})
 async function createGame() {
   const res = await fetch(api + '/game/create', {
     method: 'POST',
@@ -93,6 +98,14 @@ function startPolling() {
 
 onMounted(() => {
   if (!playerId) alert("Không lấy được user ID từ Telegram")
+})
+
+watch(() => props.startPolling, (newVal) => {
+  if (newVal) {
+    startPolling()
+  } else {
+    clearInterval(pollInterval)
+  }
 })
 </script>
 
