@@ -41,14 +41,14 @@ app.get('/game/:gameId', (req, res) => {
 
 app.post('/webhook', async (req, res) => {
   const message = req.body.message;
-
+  const botToken ='7613604843:AAE4OML5a8PRHvptJWM9Y7U4Pzi1-FhbTR4'
   if (message && message.text) {
     const chatId = message.chat.id;
     const userMessage = message.text;
     if (message?.text === '/start') {
       const chatId = message.chat.id;
 
-      await axios.post(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`, {
+      await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         chat_id: chatId,
         text: '🎮 Chào mừng bạn đến với Tic Tac Toe!',
         reply_markup: {
