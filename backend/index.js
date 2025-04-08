@@ -55,8 +55,10 @@ app.post('/webhook', async (req, res) => {
           inline_keyboard: [
             [
               {
-                text: '🚀 Bắt đầu chơi trên Web',
-                url: 'https://tic-toe-tele.netlify.app'
+                text: "🚀 Mở trò chơi",
+                web_app: {
+                  url: 'https://tic-toe-tele.netlify.app'
+                }
               }
             ]
           ]
