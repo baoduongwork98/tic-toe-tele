@@ -20,12 +20,13 @@
     console.log('Telegram User:', tg.initDataUnsafe.user)
 
     // Tùy chọn: đổi màu, nút...
-    tg.MainButton.setText("Bắt đầu ván chơi")
-    tg.MainButton.show()
-    tg.onEvent(',mainButtonClicked', () => {
-      startPolling()
-      tg.MainButton.hide()
-    })
+    // tg.MainButton.setText("Bắt đầu ván chơi")
+    // tg.MainButton.show()
+    tg.MainButton.hide()
+    // tg.onEvent(',mainButtonClicked', () => {
+    //   startPolling()
+    //   tg.MainButton.hide()
+    // })
   })
   </script>
   
