@@ -1,5 +1,7 @@
 const express = require('express')
 const cors = require('cors')
+const axios = require('axios');
+
 const {
   createGame,
   joinGame,
@@ -36,6 +38,23 @@ app.get('/game/:gameId', (req, res) => {
   if (game) res.json(game)
   else res.status(404).json({ error: 'Game not found' })
 })
+
+app.post('/webhook', async (req, res) => {
+  const message = req.body.message;
+
+  if (message && message.text) {
+    const chatId = message.chat.id;
+    const userMessage = message.text;
+
+    // Phản hồi đơn giản
+    await axios.post(`https://api.telegram.org/bot7613604843:AAE4OML5a8PRHvptJWM9Y7U4Pzi1-FhbTR4/sendMessage`, {
+      chat_id: chatId,
+      text: `Bạn đã gửi: ${userMessage}`,
+    });
+  }
+
+  res.sendStatus(200);
+});
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
