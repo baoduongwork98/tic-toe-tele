@@ -62,17 +62,6 @@ app.post('/webhook', async (req, res) => {
               }
             ]
           ],
-          keyboard:[
-            [
-              {
-                text: "Mở App",
-                web_app: {
-                  url: ' https://memory-pokemon-game-duongnb.netlify.app'
-                }
-              }
-            ]
-
-          ]
         }
       });
     }
