@@ -50,12 +50,13 @@ app.post('/webhook', async (req, res) => {
     if (message?.text === '/start') {
       const from = message.from;
       const firstName = from.first_name;
+      const lastName = from.last_name;
       const welcomeMessage =
-          `👋 Xin chào, ${firstName}!\n\n` +
+          `👋 Xin chào, ${firstName} ${lastName}!\n\n` +
           'Chào mừng bạn đến với Mini App của chúng tôi 🎉\n' +
           'Tại đây bạn có thể:\n\n' +
           '✅ Nhận tích điểm\n' +
-          'Mỗi khi bạn tham gia hoạt động hoặc chơi game, bạn sẽ nhận được điểm thưởng tích lũy – đổi quà siêu dễ!\n\n' +
+          'Mỗi khi bạn mua 1 túi hoặc một chén Cháo tươi TH true FOOD bạn sẽ có thể tích điểm thông qua QR trên hoá đơn\n\n' +
           '✅ Chơi game nhận quà\n' +
           'Giải trí với các mini game hấp dẫn, vừa chơi vừa có cơ hội nhận quà liền tay 🎁\n\n' +
           '✅ Chọn địa chỉ nhận quà\n' +
@@ -65,7 +66,8 @@ app.post('/webhook', async (req, res) => {
 
       await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         chat_id: chatId,
-        text: welcomeMessage,
+        photo:'https://drive.google.com/file/d/1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG/view?usp=drive_link',
+        caption: welcomeMessage,
         reply_markup: {
           inline_keyboard: [
             [
