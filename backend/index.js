@@ -57,7 +57,7 @@ app.post('/webhook', async (req, res) => {
               {
                 text: "🚀Mở App",
                 web_app: {
-                  url: ' https://memory-pokemon-game-duongnb.netlify.app'
+                  url: 'https://memory-pokemon-game-duongnb.netlify.app'
                 }
               }
             ]
