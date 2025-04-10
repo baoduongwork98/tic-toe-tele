@@ -67,7 +67,7 @@ app.post('/webhook', async (req, res) => {
       await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         chat_id: chatId,
         photo:'https://drive.google.com/file/d/1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG/view?usp=drive_link',
-        caption: welcomeMessage,
+        text: welcomeMessage,
         reply_markup: {
           inline_keyboard: [
             [
