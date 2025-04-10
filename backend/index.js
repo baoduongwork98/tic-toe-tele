@@ -42,20 +42,35 @@ app.get('/game/:gameId', (req, res) => {
 app.post('/webhook', async (req, res) => {
   const message = req.body.message;
   const botToken ='7058534961:AAFE-3pM4vHFCG6NMnddLB2evMIPVWaHNuY'
+  // call api to set webhook
+  ///https://api.telegram.org/bot${botToken}/setWebhook?url={urlbackend}/webhook
   if (message && message.text) {
     const chatId = message.chat.id;
     const userMessage = message.text;
     if (message?.text === '/start') {
+      const from = message.from;
+      const firstName = from.first_name;
+      const welcomeMessage =
+          `👋 Xin chào, ${firstName}!\n\n` +
+          'Chào mừng bạn đến với Mini App của chúng tôi 🎉\n' +
+          'Tại đây bạn có thể:\n\n' +
+          '✅ Nhận tích điểm\n' +
+          'Mỗi khi bạn tham gia hoạt động hoặc chơi game, bạn sẽ nhận được điểm thưởng tích lũy – đổi quà siêu dễ!\n\n' +
+          '✅ Chơi game nhận quà\n' +
+          'Giải trí với các mini game hấp dẫn, vừa chơi vừa có cơ hội nhận quà liền tay 🎁\n\n' +
+          '✅ Chọn địa chỉ nhận quà\n' +
+          'Chọn địa chỉ nhận hàng tiện lợi để chúng tôi gửi quà đến tận tay bạn 📦\n\n' +
+          '👉 Nhấn nút bên dưới để bắt đầu ngay nhé!';
       const chatId = message.chat.id;
 
       await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         chat_id: chatId,
-        text: 'Nhấn vào nút để mở app!',
+        text: welcomeMessage,
         reply_markup: {
           inline_keyboard: [
             [
               {
-                text: "🚀Mở App",
+                text: "🚀Bắt đầu",
                 web_app: {
                   url: 'https://memory-pokemon-game-duongnb.netlify.app'
                 }
