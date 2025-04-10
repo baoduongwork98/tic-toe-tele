@@ -41,7 +41,7 @@ app.get('/game/:gameId', (req, res) => {
 
 app.post('/webhook', async (req, res) => {
   const message = req.body.message;
-  const botToken ='7613604843:AAE4OML5a8PRHvptJWM9Y7U4Pzi1-FhbTR4'
+  const botToken ='7058534961:AAFE-3pM4vHFCG6NMnddLB2evMIPVWaHNuY'
   if (message && message.text) {
     const chatId = message.chat.id;
     const userMessage = message.text;
@@ -50,17 +50,28 @@ app.post('/webhook', async (req, res) => {
 
       await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         chat_id: chatId,
-        text: '🎮 Chào mừng bạn đến với Tic Tac Toe!',
+        text: 'Nhấn vào nút để mở app!',
         reply_markup: {
           inline_keyboard: [
             [
               {
-                text: "🚀 Mở trò chơi",
+                text: "🚀Mở App",
                 web_app: {
-                  url: 'https://tic-toe-tele.netlify.app'
+                  url: ' https://memory-pokemon-game-duongnb.netlify.app'
                 }
               }
             ]
+          ],
+          keyboard:[
+            [
+              {
+                text: "Mở App",
+                web_app: {
+                  url: ' https://memory-pokemon-game-duongnb.netlify.app'
+                }
+              }
+            ]
+
           ]
         }
       });
