@@ -65,7 +65,7 @@ app.post('/webhook', async (req, res) => {
       const chatId = message.chat.id;
       const payload = {
         chat_id: chatId,
-        photo: "https://drive.google.com/file/d/1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG/view?usp=drive_link", // ảnh từ URL
+        photo: "https://drive.google.com/file/d/1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG/view", // ảnh từ URL
         caption: "🎉 Chào mừng đến với bot!",
       };
 
@@ -77,7 +77,7 @@ app.post('/webhook', async (req, res) => {
 
       await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         chat_id: chatId,
-        photo:'https://drive.google.com/file/d/1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG/view?usp=drive_link',
+        photo:"https://drive.google.com/file/d/1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG/view",
         text: welcomeMessage,
         reply_markup: {
           inline_keyboard: [
