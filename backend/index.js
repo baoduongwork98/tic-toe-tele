@@ -45,8 +45,6 @@ app.post('/webhook', async (req, res) => {
   // call api to set webhook
   ///https://api.telegram.org/bot${botToken}/setWebhook?url={urlbackend}/webhook
   if (message && message.text) {
-    const chatId = message.chat.id;
-    const userMessage = message.text;
     if (message?.text === '/start') {
       const from = message.from;
       const firstName = from.first_name;
@@ -64,10 +62,10 @@ app.post('/webhook', async (req, res) => {
           '👉 Nhấn nút bên dưới để bắt đầu ngay nhé!';
       const chatId = message.chat.id;
 
-      await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      await axios.post(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
         chat_id: chatId,
-        photo:"https://drive.google.com/file/d/1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG/view",
-        text: welcomeMessage,
+        photo:"https://drive.google.com/uc?export=view&id=1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG",
+        caption: welcomeMessage,
         reply_markup: {
           inline_keyboard: [
             [
