@@ -63,6 +63,17 @@ app.post('/webhook', async (req, res) => {
           'Chọn địa chỉ nhận hàng tiện lợi để chúng tôi gửi quà đến tận tay bạn 📦\n\n' +
           '👉 Nhấn nút bên dưới để bắt đầu ngay nhé!';
       const chatId = message.chat.id;
+      const payload = {
+        chat_id: chatId,
+        photo: "https://drive.google.com/file/d/1iuEGEkAvVqf97mA_Ie3otJjnniZLqfsG/view?usp=drive_link", // ảnh từ URL
+        caption: "🎉 Chào mừng đến với bot!",
+      };
+
+      await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
       await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         chat_id: chatId,
